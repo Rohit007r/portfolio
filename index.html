@@ -1,149 +1,1879 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rohit Gupta | Portfolio</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rohit Gupta — Portfolio</title>
+  <meta name="description" content="Personal Portfolio, Experience, Projects, Education & Certifications." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ========================================================================
+       WORLD-CLASS COLORFUL 3D INTERACTIVE PORTFOLIO (SINGLE-FILE EDITION)
+       ======================================================================== */
+    :root {
+      --bg-base: #06070d;
+      --bg-surface: rgba(15, 18, 32, 0.68);
+      --bg-surface-hover: rgba(22, 27, 48, 0.85);
+      --bg-glass: rgba(10, 13, 24, 0.78);
+      --bg-pill: rgba(255, 255, 255, 0.06);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --cyan: #00f2fe;
+      --blue: #4facfe;
+      --violet: #8b5cf6;
+      --pink: #ec4899;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+
+      --grad-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 35%, #8b5cf6 70%, #ec4899 100%);
+      --grad-emerald: linear-gradient(135deg, #10b981 0%, #00f2fe 100%);
+      --grad-warm: linear-gradient(135deg, #f59e0b 0%, #ec4899 60%, #8b5cf6 100%);
+
+      --border-light: rgba(255, 255, 255, 0.09);
+      --border-glow: rgba(0, 242, 254, 0.4);
+
+      --shadow-3d: 0 22px 50px -12px rgba(0, 0, 0, 0.65);
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html[data-theme="light"] {
+      --bg-base: #f4f7fb;
+      --bg-surface: rgba(255, 255, 255, 0.85);
+      --bg-surface-hover: #ffffff;
+      --bg-glass: rgba(255, 255, 255, 0.85);
+      --bg-pill: rgba(15, 23, 42, 0.05);
+
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+
+      --border-light: rgba(15, 23, 42, 0.08);
+      --border-glow: rgba(79, 172, 254, 0.45);
+      --shadow-3d: 0 20px 45px -15px rgba(15, 23, 42, 0.1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input {
+      font-family: inherit;
+    }
+
+    /* ========================================================================
+       3D INTERACTIVE CANVAS & COLORFUL AURORA BACKGROUND
+       ======================================================================== */
+    #bgCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .aurora-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.28;
+      animation: floatBlob 18s ease-in-out infinite alternate;
+    }
+
+    html[data-theme="light"] .aurora-blob {
+      opacity: 0.16;
+    }
+
+    .blob-1 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, var(--cyan), var(--violet));
+      top: -180px;
+      left: -120px;
+    }
+
+    .blob-2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--pink), var(--violet));
+      top: 30%;
+      right: -200px;
+      animation-delay: -6s;
+    }
+
+    .blob-3 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--emerald), var(--blue));
+      bottom: -150px;
+      left: 20%;
+      animation-delay: -12s;
+    }
+
+    @keyframes floatBlob {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(40px, -30px, 0) scale(1.08); }
+      100% { transform: translate3d(-30px, 40px, 0) scale(0.95); }
+    }
+
+    /* ========================================================================
+       FLOATING GLASS NAVIGATION BAR
+       ======================================================================== */
+    .navbar {
+      position: sticky;
+      top: 18px;
+      z-index: 100;
+      max-width: 1160px;
+      margin: 18px auto 0;
+      padding: 0 20px;
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 20px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-light);
+      border-radius: 999px;
+      box-shadow: var(--shadow-3d);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-orb {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--grad-primary);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.45);
+      position: relative;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-pill {
+      padding: 7px 15px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: all 0.22s ease;
+      white-space: nowrap;
+    }
+
+    .nav-pill:hover {
+      color: var(--text-main);
+      background: var(--bg-pill);
+      transform: translateY(-1px);
+    }
+
+    .theme-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border-light);
+      background: var(--bg-pill);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      flex-shrink: 0;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+      transform: rotate(15deg) scale(1.05);
+    }
+
+    html[data-theme="dark"] .icon-sun { display: block; }
+    html[data-theme="dark"] .icon-moon { display: none; }
+    html[data-theme="light"] .icon-sun { display: none; }
+    html[data-theme="light"] .icon-moon { display: block; }
+
+    /* ========================================================================
+       MAIN LAYOUT & 3D TILT ENGINE
+       ======================================================================== */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 36px 20px 80px;
+    }
+
+    .tilt-card {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-3d);
+      transform-style: preserve-3d;
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+    }
+
+    .tilt-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        480px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(0, 242, 254, 0.13),
+        rgba(139, 92, 246, 0.06) 40%,
+        transparent 70%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tilt-card:hover::after {
+      opacity: 1;
+    }
+
+    .tilt-card:hover {
+      border-color: var(--border-glow);
+      box-shadow: 0 28px 60px -15px rgba(0, 0, 0, 0.7), 0 0 30px -8px rgba(0, 242, 254, 0.25);
+    }
+
+    /* ========================================================================
+       HERO 3D BENTO SECTION
+       ======================================================================== */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 22px;
+      margin-bottom: 56px;
+    }
+
+    .hero-primary {
+      padding: 42px 40px;
+      border-radius: var(--radius-xl);
+      position: relative;
+    }
+
+    .hero-primary::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--grad-primary);
+    }
+
+    .availability-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 15px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--emerald);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 12px var(--emerald);
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.65; }
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 10px;
+    }
+
+    .hero-name span {
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-role {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 18px;
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      max-width: 62ch;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .hero-chip {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--bg-pill);
+      border: 1px solid var(--border-light);
+      color: var(--text-main);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-glow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 26px;
+      border-radius: 999px;
+      background: var(--grad-primary);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: 0 10px 28px -6px rgba(0, 242, 254, 0.5);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .btn-glow:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 34px -6px rgba(236, 72, 153, 0.6);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: var(--bg-pill);
+      border: 1px solid var(--border-light);
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.22s ease;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Right Column: 3D Metrics & Social Dock */
+    .hero-secondary {
+      padding: 32px;
+      border-radius: var(--radius-xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .metric-tile {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background: var(--bg-pill);
+      border: 1px solid var(--border-light);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.22s ease, border-color 0.22s ease;
+    }
+
+    .metric-tile:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-glow);
+    }
+
+    .metric-num {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 900;
+      background: var(--grad-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.1;
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .social-dock-label {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .social-dock {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .social-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: var(--bg-pill);
+      border: 1px solid var(--border-light);
+      transition: all 0.2s ease;
+    }
+
+    a.social-pill:hover {
+      border-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.1);
+      transform: translateX(4px);
+    }
+
+    .social-pill-left {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .social-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: var(--grad-primary);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .social-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .social-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ========================================================================
+       SECTION HEADERS & CATEGORY FILTER PILLS
+       ======================================================================== */
+    .portfolio-content {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .section-block {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: revealUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes revealUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .section-head-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-icon-orb {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--grad-primary);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px -4px rgba(139, 92, 246, 0.5);
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .subfilter-pills {
+      display: inline-flex;
+      gap: 6px;
+      padding: 4px;
+      border-radius: 999px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+    }
+
+    .subfilter-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .subfilter-btn.active {
+      background: var(--grad-primary);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 242, 254, 0.35);
+    }
+
+    /* ========================================================================
+       TIMELINE LAYOUT (EXPERIENCE)
+       ======================================================================== */
+    .timeline-track {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-left: 28px;
+    }
+
+    .timeline-track::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 8px;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, var(--cyan), var(--violet), var(--pink));
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 26px 28px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -26px;
+      top: 32px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--cyan);
+      border: 3px solid var(--bg-base);
+      box-shadow: 0 0 14px var(--cyan);
+      z-index: 2;
+    }
+
+    /* ========================================================================
+       3D CARDS GRID (PROJECTS, EDUCATION & CERTIFICATIONS, CUSTOM SECTIONS)
+       ======================================================================== */
+    .cards-3d-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .card-3d-item {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .card-accent-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--grad-primary);
+    }
+
+    .card-accent-bar.is-edu {
+      background: var(--grad-emerald);
+    }
+
+    .card-accent-bar.is-cert {
+      background: var(--grad-warm);
+    }
+
+    .card-eyebrow-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .category-badge.edu-badge {
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--emerald);
+    }
+
+    .category-badge.cert-badge {
+      background: rgba(245, 158, 11, 0.14);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: var(--amber);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .item-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    a.item-title-link {
+      transition: color 0.2s ease;
+    }
+
+    a.item-title-link:hover {
+      color: var(--cyan);
+    }
+
+    .item-date {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+
+    .item-subtitle {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #a78bfa;
+      margin-bottom: 10px;
+    }
+
+    html[data-theme="light"] .item-subtitle {
+      color: #6d28d9;
+    }
+
+    .item-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.68;
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .skill-tag {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: var(--bg-pill);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      transition: all 0.18s ease;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: rgba(0, 242, 254, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .action-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--grad-primary);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .action-link-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 20px rgba(236, 72, 153, 0.45);
+    }
+
+    /* ========================================================================
+       SKILLS 3D PODS
+       ======================================================================== */
+    .skills-3d-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-pod {
+      padding: 24px 26px;
+    }
+
+    .skill-pod-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .skill-pod-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .skill-pod-pct {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    .skill-bar-track {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--bg-pill);
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--grad-primary);
+    }
+
+    /* ========================================================================
+       CLEAN PERSONAL FOOTER
+       ======================================================================== */
+    .personal-footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border-light);
+      padding: 32px 20px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-primary {
+        padding: 30px 24px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .cards-3d-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Rohit Gupta</h1>
-      <p>IT Support | Server Admin | AWS Billing | Automation</p>
-      <img src="profile.jpg" alt="Rohit Gupta" class="profile-photo">
+  <!-- Colorful Aurora & 3D Interactive Particle Canvas -->
+  <div class="aurora-container" aria-hidden="true">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+    <div class="aurora-blob blob-3"></div>
+  </div>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <!-- Clean Personal Navbar -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="#top" class="brand">
+        <span class="brand-orb" id="navInitials">RG</span>
+        <span class="brand-name" id="navName">Rohit Gupta</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Sections"></nav>
+
+      <button type="button" class="theme-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Switch Theme">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
   </header>
 
-  <section class="about">
-    <h2>About Me</h2>
-    <p><strong>Contact:</strong> +91 9614196729, +91 7602633316 | rohit7098224487@gmail.com</p>
-    <p><strong>Address:</strong> Main Road Bus Stand, Jogbani, Araria (Bihar) - 854328</p>
-    <p><strong>Date of Birth:</strong> 23rd September 1993 | <strong>Gender:</strong> Male | <strong>Nationality:</strong> Indian</p>
-    <p><strong>Father’s Name:</strong> Murli Gupta | <strong>Marital Status:</strong> Single | <strong>Languages Known:</strong> English, Hindi</p>
-  </section>
+  <!-- Main Portfolio Content -->
+  <main class="container" id="top">
+    <section id="heroContainer"></section>
+    <div class="portfolio-content" id="sectionsContainer"></div>
+  </main>
 
-  <section>
-    <h2>Objective</h2>
-    <p>To contribute my technical expertise and problem-solving abilities in a dynamic and professional
-    environment, while continuously enhancing my skills and growing within the organization.</p>
-  </section>
-
-  <section class="skills">
-    <h2>Key Skills & Strengths</h2>
-    <ul>
-      <li>Energetic, adaptable & flexible in work environments</li>
-      <li>Strong problem-solving and analytical skills</li>
-      <li>Excellent communication and interpersonal skills</li>
-      <li>Ability to learn new technologies quickly</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Hobbies</h2>
-    <ul>
-      <li>Listening to music</li>
-      <li>Cooking, Playing outdoor & indoor games</li>
-      <li>Exploring new technologies</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Educational Qualifications</h2>
-    <ul>
-      <li>B.COM from BNMU (2013)</li>
-      <li>Higher Secondary (10+2) from BSEB (2010)</li>
-      <li>10th Standard from SSVM (2008)</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Professional Qualifications</h2>
-    <ul>
-      <li>PGDCA from SGUT</li>
-      <li>Hardware and Network Engineering (JCHNE) from Jetking</li>
-      <li>TOT from NSDC</li>
-      <li>ADCA</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Technical Skills</h2>
-    <ul>
-      <li>Hardware & Networking, Routers and Firewalls (Cisco, Sophos, etc.)</li>
-      <li>Ticket Management & Escalation Matrix</li>
-      <li>Vendor & Inventory Management, Digital Marketing</li>
-      <li>Office 365 & Google Workspace, DHCP, DNS, Routing, Switching</li>
-      <li>Cloud Computing (AWS, Azure), Windows Server, Linux, Mac</li>
-      <li>MS Office, Network Automation, IT Security & System Administration</li>
-      <li>ChatGPT, Gemini & Copilot, IT Sales, Adobe Photoshop</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Work Experience</h2>
-    <ul>
-      <li><strong>Zydus Wellness</strong> – IT Support (2 years)</li>
-      <li><strong>NIIT Ltd</strong> – Desktop Support & Technical Support (2 years)</li>
-      <li><strong>Zephyr</strong> – Technical Support (2 years)</li>
-      <li><strong>Ergode IT Services</strong> – IT Support (Team Lead), From 2021 to Present</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Achievements</h2>
-    <ul>
-      <li>Certificate of Excellence and Certificate of Appreciation by Progressive InfoTech (2017)</li>
-      <li>Outstanding Performer of the Month by NIIT (2018)</li>
-      <li>Plus award by Ergode IT Services (2024)</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Coursera Certificates</h2>
-    <ul>
-      <li><a href="https://coursera.org/share/e8335301b1829d765df8a918c1b17366" target="_blank">Certificate 1</a></li>
-      <li><a href="https://coursera.org/share/fdf6cb3bdbb7773b51a87b45bac9d35e" target="_blank">Certificate 2</a></li>
-      <li><a href="https://coursera.org/share/fdf6cb3bdbb7773b51a87b45bac9d35e" target="_blank">Certificate 3</a></li>
-      <li><a href="https://coursera.org/share/30af9b0d899b8cbb5945e0e91529e5ce" target="_blank">Certificate 4</a></li>
-      <li><a href="https://coursera.org/share/9e306c681dafa0ad212abc7a7c164d60" target="_blank">Certificate 5</a></li>
-      <li><a href="https://coursera.org/share/ab7be97848635a1be6e6a3b1e7989d9a" target="_blank">Certificate 6</a></li>
-      <li><a href="https://coursera.org/share/d600492a94de4b410f9831c3207b0753" target="_blank">Certificate 7</a></li>
-      <li><a href="https://coursera.org/share/8e50d1c9f9f9476c58605ce524d42c30" target="_blank">Certificate 8</a></li>
-      <li><a href="https://coursera.org/share/151ff2d3fb615f79748112536c652f42" target="_blank">Certificate 9</a></li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>My Projects</h2>
-    <div class="project-card">
-      <h3>HNIT Inventory</h3>
-      <p>A simple inventory management system.</p>
-      <a href="https://rohit007r.github.io/hnit-inventory/" target="_blank">View Project</a>
-    </div>
-    <div class="project-card">
-      <h3>HNIT Bot</h3>
-      <p>An AI-powered support chatbot UI linked to a Google Sheet.</p>
-      <a href="https://rohit007r.github.io/hnit-bot/" target="_blank">View Project</a>
-    </div>
-    <div class="project-card">
-      <h3>Tools Collection</h3>
-      <p>A hub of daily-use tools made using HTML/JS.</p>
-      <a href="https://rohit007r.github.io/Tools/" target="_blank">View Tools</a>
-    </div>
-  </section>
-
-  <section>
-    <h2>Declaration</h2>
-    <p>I hereby declare that all the statements mentioned above are true to the best of my knowledge and belief.</p>
-    <p><strong>Rohit Kumar Gupta</strong></p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Rohit Gupta</p>
+  <!-- Clean Personal Footer -->
+  <footer class="personal-footer">
+    <p id="footerText">© 2026 Rohit Gupta. All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    /**
+     * ========================================================================
+     * 1. YOUR GOOGLE SHEET CONFIGURATION
+     * ========================================================================
+     * Everything on this website updates automatically from this Google Sheet!
+     */
+    const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1t1Gc3lNn3Wh_CD7EF4cfzeHDHVMXdaw8x-C8QuaccQs/edit?gid=0#gid=0";
+
+    // Default rows if sheet is temporarily offline
+    const DEFAULT_ROWS = [
+      {
+        Section: "Profile",
+        Title: "Rohit Gupta",
+        Subtitle: "Full-Stack Software Engineer & Cloud Architect",
+        Date: "Available for Opportunities",
+        Description: "Passionate about building scalable web applications, cloud-native systems, and interactive digital products with clean architecture and high performance.",
+        Tags: "India | Full-Stack Development | Cloud & AI",
+        Link: "mailto:rohit@example.com",
+        LinkText: "Get In Touch"
+      },
+      {
+        Section: "Social",
+        Title: "GitHub",
+        Subtitle: "@rohitgupta",
+        Date: "",
+        Description: "Open-source projects & code repositories",
+        Tags: "",
+        Link: "https://github.com",
+        LinkText: "GitHub"
+      },
+      {
+        Section: "Social",
+        Title: "LinkedIn",
+        Subtitle: "in/rohit-gupta",
+        Date: "",
+        Description: "Professional network & experience",
+        Tags: "",
+        Link: "https://linkedin.com",
+        LinkText: "LinkedIn"
+      },
+      {
+        Section: "Experience",
+        Title: "Senior Software Engineer",
+        Subtitle: "NovaPay Tech",
+        Date: "2024 – Present",
+        Description: "Architected scalable backend APIs and cloud microservices handling high-volume production traffic with low latency.",
+        Tags: "Node.js, React, AWS, Redis, TypeScript",
+        Link: "https://example.com",
+        LinkText: "Company"
+      },
+      {
+        Section: "Projects",
+        Title: "PulseOps AI",
+        Subtitle: "Real-Time DevOps & Incident Platform",
+        Date: "2025",
+        Description: "Real-time log streaming and root-cause analysis platform powered by AI and modern web technologies.",
+        Tags: "Next.js, Go, TypeScript, Docker",
+        Link: "https://github.com",
+        LinkText: "Live Demo"
+      },
+      {
+        Section: "Education",
+        Title: "B.Tech in Computer Science & Engineering",
+        Subtitle: "Indian Institute of Information Technology (IIIT)",
+        Date: "2018 – 2022",
+        Description: "First Class with Distinction. Focused on Data Structures, Algorithms, Operating Systems, and Distributed Computing.",
+        Tags: "CGPA: 8.92/10, Computer Science",
+        Link: "",
+        LinkText: ""
+      },
+      {
+        Section: "Certifications",
+        Title: "AWS Certified Solutions Architect",
+        Subtitle: "Amazon Web Services",
+        Date: "2024",
+        Description: "Cloud architecture, distributed systems design, and security best practices.",
+        Tags: "AWS, Cloud, Architecture",
+        Link: "https://aws.amazon.com",
+        LinkText: "View Certificate"
+      },
+      {
+        Section: "Certifications",
+        Title: "Enterprise Security & AppSec Workshop",
+        Subtitle: "Tech Academy",
+        Date: "2023",
+        Description: "Intensive hands-on training in OWASP Top 10 and API security.",
+        Tags: "AppSec, Security",
+        Link: "",
+        LinkText: ""
+      },
+      {
+        Section: "Skills",
+        Title: "Frontend & UI Engineering",
+        Subtitle: "95%",
+        Date: "Core",
+        Description: "Modern responsive interfaces and interactive web apps",
+        Tags: "React, Next.js, TypeScript, JavaScript, Tailwind CSS, HTML5/CSS3",
+        Link: "",
+        LinkText: ""
+      },
+      {
+        Section: "Skills",
+        Title: "Backend & Cloud Architecture",
+        Subtitle: "90%",
+        Date: "Core",
+        Description: "Scalable APIs, databases, and cloud deployments",
+        Tags: "Node.js, Python, Go, PostgreSQL, Redis, AWS, Docker",
+        Link: "",
+        LinkText: ""
+      },
+      {
+        Section: "Achievements",
+        Title: "National Hackathon Winner",
+        Subtitle: "Smart India Hackathon",
+        Date: "2021",
+        Description: "1st Place winner among 400+ competing teams nationwide.",
+        Tags: "Winner, Innovation, AI",
+        Link: "",
+        LinkText: ""
+      }
+    ];
+
+    // ========================================================================
+    // 2. GOOGLE SHEET LOADER & PARSER (SUPPORTS ANY CATEGORIES & LINKS)
+    // ========================================================================
+    let portfolioRows = [];
+    let activeCredFilter = "ALL"; // "ALL" | "Education" | "Certifications"
+
+    function extractSheetInfo(url) {
+      const trimmed = (url || "").trim();
+      const idMatch = trimmed.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+      const gidMatch = trimmed.match(/[#&?]gid=([0-9]+)/);
+      const sheetId = idMatch && idMatch[1] ? idMatch[1] : "";
+      const gid = gidMatch && gidMatch[1] ? gidMatch[1] : "0";
+      return {
+        sheetId,
+        gid,
+        jsonpUrl: `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?headers=0&gid=${gid}`,
+        csvUrl: `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&headers=0&gid=${gid}`
+      };
+    }
+
+    function fetchSheetJsonp(jsonpUrl, timeoutMs = 8000) {
+      return new Promise((resolve, reject) => {
+        const cbName = "__portfolioSheetCb_" + Date.now();
+        const script = document.createElement("script");
+        let timer = setTimeout(() => {
+          cleanup();
+          reject(new Error("Sheet load timeout"));
+        }, timeoutMs);
+
+        function cleanup() {
+          clearTimeout(timer);
+          delete window[cbName];
+          if (script.parentNode) script.parentNode.removeChild(script);
+        }
+
+        window[cbName] = function (res) {
+          cleanup();
+          if (!res || res.status === "error" || !res.table) {
+            reject(new Error("Invalid sheet response"));
+            return;
+          }
+          const rows2D = [];
+          const cols = (res.table.cols || []).map((c) => (c && c.label ? String(c.label).trim() : ""));
+          if (cols.some((l) => l.length > 0)) rows2D.push(cols);
+
+          (res.table.rows || []).forEach((r) => {
+            if (!r || !Array.isArray(r.c)) return;
+            const cells = r.c.map((cell) => {
+              if (!cell) return "";
+              if (cell.f !== undefined && cell.f !== null) return String(cell.f).trim();
+              if (cell.v !== undefined && cell.v !== null) return String(cell.v).trim();
+              return "";
+            });
+            if (cells.some((v) => v !== "")) rows2D.push(cells);
+          });
+          resolve(rows2D);
+        };
+
+        script.onerror = () => {
+          cleanup();
+          reject(new Error("Script error"));
+        };
+
+        script.src = `${jsonpUrl}&tqx=responseHandler:${cbName}&_t=${Date.now()}`;
+        document.head.appendChild(script);
+      });
+    }
+
+    function cleanLinkValue(raw) {
+      if (!raw || typeof raw !== "string") return "";
+      let s = raw.trim();
+      if (!s) return "";
+
+      s = s.replace(/\*?\([^)]*(khali|empty|optional|name only|leave)[^)]*\)\*?/gi, "").trim();
+      const lower = s.toLowerCase();
+      if (
+        !s ||
+        ["-", "na", "n/a", "none", "null", "empty", "khali"].includes(lower) ||
+        lower.includes("sirf name") ||
+        lower.includes("name only") ||
+        lower.includes("leave empty") ||
+        lower.includes("khali chhod")
+      ) {
+        return "";
+      }
+
+      s = s.replace(/\/?\.\.\.+$/, "").trim();
+      if (/^https?:\/?\/?$/i.test(s)) return "";
+      if (/^(https?:\/\/|mailto:|tel:)/i.test(s)) return s;
+      if (/^www\.[a-z0-9.-]+\.[a-z]{2,}/i.test(s)) return "https://" + s;
+      if (!s.includes(" ") && /^[a-z0-9-]+\.[a-z]{2,}(\/\S*)?$/i.test(s)) return "https://" + s;
+      return "";
+    }
+
+    function parseRows2D(rows) {
+      if (!rows || !rows.length) return [];
+
+      const firstRow = rows[0].map((h) =>
+        String(h || "")
+          .toLowerCase()
+          .replace(/\(optional\)/g, "")
+          .replace(/[^a-z0-9]/g, "")
+      );
+
+      const headerWords = ["section", "category", "type", "title", "name", "role", "degree", "certificate", "detail", "details"];
+      const hasHeader = firstRow.some((h) => headerWords.includes(h));
+
+      function findIdx(aliases) {
+        if (!hasHeader) return -1;
+        for (const a of aliases) {
+          const i = firstRow.indexOf(a);
+          if (i !== -1) return i;
+        }
+        return -1;
+      }
+
+      const map = {
+        Section: findIdx(["section", "category", "type", "group", "part", "heading"]),
+        Title: findIdx(["title", "name", "role", "degree", "certificate", "detail", "details", "item", "work", "project", "skill"]),
+        Subtitle: findIdx(["subtitle", "company", "organization", "institute", "issuer", "college", "university", "platform", "level"]),
+        Date: findIdx(["date", "period", "year", "duration", "timeline", "status", "batch"]),
+        Description: findIdx(["description", "summary", "about", "bio", "notes", "info", "points"]),
+        Tags: findIdx(["tags", "skills", "tech", "keywords", "badges", "highlights", "cgpa", "score"]),
+        Link: findIdx(["link", "url", "href", "certificatelink", "website", "proof", "verify"]),
+        LinkText: findIdx(["linktext", "buttontext", "cta", "linklabel", "action", "button"])
+      };
+
+      const parsed = [];
+      for (let r = hasHeader ? 1 : 0; r < rows.length; r++) {
+        const row = rows[r];
+        if (!row || row.every((c) => !String(c || "").trim())) continue;
+
+        const getVal = (key, fallbackIdx) => {
+          const idx = map[key] !== -1 ? map[key] : fallbackIdx;
+          return idx >= 0 && idx < row.length ? String(row[idx] || "").trim() : "";
+        };
+
+        const item = {
+          Section: getVal("Section", 0),
+          Title: getVal("Title", 1),
+          Subtitle: getVal("Subtitle", 2),
+          Date: getVal("Date", 3),
+          Description: getVal("Description", 4),
+          Tags: getVal("Tags", 5),
+          Link: cleanLinkValue(getVal("Link", 6)),
+          LinkText: getVal("LinkText", 7)
+        };
+
+        if (!item.Link) {
+          for (const f of ["Subtitle", "Date", "Description", "Tags"]) {
+            const u = cleanLinkValue(item[f]);
+            if (u && /^(https?:\/\/|mailto:)/i.test(item[f].trim())) {
+              item.Link = u;
+              item[f] = "";
+              break;
+            }
+          }
+        }
+
+        if (item.Section || item.Title) parsed.push(item);
+      }
+
+      return parsed;
+    }
+
+    // ========================================================================
+    // 3. DYNAMIC SECTION GROUPING & RENDERING
+    // ========================================================================
+    function classifySection(rawSection) {
+      const raw = String(rawSection || "").trim();
+      const s = raw.toLowerCase();
+      if (!s) return { group: "Other", subType: "Other", displayLabel: "Highlights" };
+
+      if (["profile", "bio", "about", "hero", "header", "personal", "me"].includes(s)) {
+        return { group: "Profile", subType: "Profile", displayLabel: "Profile" };
+      }
+      if (["social", "socials", "contact", "links", "connect"].includes(s)) {
+        return { group: "Social", subType: "Social", displayLabel: "Social" };
+      }
+      // Group Education AND Certifications together in one unified section by category!
+      if (["education", "graduation", "academic", "academics", "degree", "qualification", "college", "school", "university"].includes(s)) {
+        return { group: "Education & Certifications", subType: "Education", displayLabel: "Education" };
+      }
+      if (["certificates", "certificate", "certifications", "certification", "online certificate", "courses", "course", "credentials", "credential"].includes(s)) {
+        return { group: "Education & Certifications", subType: "Certifications", displayLabel: "Certification" };
+      }
+      if (["experience", "exp", "work", "work experience", "employment", "career", "internship", "internships"].includes(s)) {
+        return { group: "Experience", subType: "Experience", displayLabel: raw.replace(/\b\w/g, (c) => c.toUpperCase()) };
+      }
+      if (["projects", "project", "portfolio", "apps", "work samples"].includes(s)) {
+        return { group: "Projects", subType: "Projects", displayLabel: raw.replace(/\b\w/g, (c) => c.toUpperCase()) };
+      }
+      if (["skills", "skill", "tech stack", "technologies", "tools", "expertise"].includes(s)) {
+        return { group: "Skills", subType: "Skills", displayLabel: raw.replace(/\b\w/g, (c) => c.toUpperCase()) };
+      }
+
+      // Any custom category added by user in Google Sheet reflects with its exact name!
+      const customName = raw.replace(/\b\w/g, (c) => c.toUpperCase());
+      return { group: customName, subType: customName, displayLabel: customName };
+    }
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function formatName(name) {
+      const s = String(name || "").trim();
+      if (!s) return "Portfolio";
+      if (s === s.toLowerCase()) return s.replace(/\b\w/g, (c) => c.toUpperCase());
+      return s;
+    }
+
+    function getInitials(name) {
+      const parts = String(name || "P").trim().split(/\s+/);
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+
+    function splitTags(str) {
+      if (!str) return [];
+      const sep = str.includes("|") ? "|" : ",";
+      return str.split(sep).map((t) => t.trim()).filter(Boolean);
+    }
+
+    function getSectionIcon(groupName) {
+      const g = groupName.toLowerCase();
+      if (g.includes("experience")) {
+        return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`;
+      }
+      if (g.includes("project")) {
+        return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>`;
+      }
+      if (g.includes("education") || g.includes("certification")) {
+        return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`;
+      }
+      if (g.includes("skill")) {
+        return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`;
+      }
+      return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+    }
+
+    function renderPortfolio() {
+      const grouped = {
+        Profile: [],
+        Social: [],
+        order: [],
+        sections: {}
+      };
+
+      portfolioRows.forEach((raw) => {
+        const info = classifySection(raw.Section);
+        const item = Object.assign({}, raw, {
+          _group: info.group,
+          _subType: info.subType,
+          _label: info.displayLabel,
+          Link: cleanLinkValue(raw.Link)
+        });
+
+        if (info.group === "Profile") {
+          grouped.Profile.push(item);
+        } else if (info.group === "Social") {
+          grouped.Social.push(item);
+        } else {
+          if (!grouped.sections[info.group]) {
+            grouped.sections[info.group] = [];
+            grouped.order.push(info.group);
+          }
+          grouped.sections[info.group].push(item);
+        }
+      });
+
+      const profile = grouped.Profile[0] || {
+        Title: "Rohit Gupta",
+        Subtitle: "Full-Stack Engineer",
+        Date: "Available Now",
+        Description: "",
+        Tags: "",
+        Link: "",
+        LinkText: "Contact Me"
+      };
+
+      const fullName = formatName(profile.Title);
+      document.title = `${fullName} — ${profile.Subtitle || "Portfolio"}`;
+      document.getElementById("navInitials").textContent = getInitials(fullName);
+      document.getElementById("navName").textContent = fullName;
+      document.getElementById("footerText").textContent = `© ${new Date().getFullYear()} ${fullName}. Crafted with passion.`;
+
+      // Render Top Navigation Links dynamically from Sheet Sections
+      document.getElementById("navLinks").innerHTML = grouped.order
+        .map((groupName) => {
+          const slug = groupName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+          return `<a href="#sec-${slug}" class="nav-pill">${escapeHtml(groupName)}</a>`;
+        })
+        .join("");
+
+      // Calculate Dynamic Hero Metrics
+      const expItems = grouped.sections["Experience"] || [];
+      const projItems = grouped.sections["Projects"] || [];
+      const credItems = grouped.sections["Education & Certifications"] || [];
+      const skillSet = new Set();
+      (grouped.sections["Skills"] || []).forEach((s) => {
+        splitTags(s.Tags).forEach((t) => skillSet.add(t));
+        if (s.Title) skillSet.add(s.Title);
+      });
+
+      const heroChips = splitTags(profile.Tags);
+      const socialHtml = grouped.Social.map((soc) => {
+        const badge = (soc.Title || "L").slice(0, 2).toUpperCase();
+        const sub = soc.Subtitle || soc.LinkText || soc.Description || "";
+        if (soc.Link) {
+          return `
+            <a href="${escapeHtml(soc.Link)}" target="${soc.Link.startsWith("mailto:") ? "_self" : "_blank"}" rel="noopener noreferrer" class="social-pill">
+              <div class="social-pill-left">
+                <span class="social-badge">${escapeHtml(badge)}</span>
+                <div style="min-width:0">
+                  <div class="social-title">${escapeHtml(soc.Title)}</div>
+                  ${sub ? `<div class="social-sub">${escapeHtml(sub)}</div>` : ""}
+                </div>
+              </div>
+              <span style="color:var(--cyan); font-weight:700;">↗</span>
+            </a>
+          `;
+        }
+        return `
+          <div class="social-pill">
+            <div class="social-pill-left">
+              <span class="social-badge">${escapeHtml(badge)}</span>
+              <div style="min-width:0">
+                <div class="social-title">${escapeHtml(soc.Title)}</div>
+                ${sub ? `<div class="social-sub">${escapeHtml(sub)}</div>` : ""}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const firstSecSlug = grouped.order[0] ? grouped.order[0].toLowerCase().replace(/[^a-z0-9]+/g, "-") : "";
+
+      document.getElementById("heroContainer").innerHTML = `
+        <div class="hero-grid">
+          <div class="tilt-card hero-primary">
+            ${
+              profile.Date
+                ? `<div class="availability-pill">
+                     <span class="pulse-dot"></span>
+                     <span>${escapeHtml(profile.Date)}</span>
+                   </div>`
+                : ""
+            }
+            <h1 class="hero-name">Hi, I'm <span>${escapeHtml(fullName)}</span></h1>
+            ${profile.Subtitle ? `<p class="hero-role">${escapeHtml(profile.Subtitle)}</p>` : ""}
+            ${profile.Description ? `<p class="hero-bio">${escapeHtml(profile.Description)}</p>` : ""}
+
+            ${
+              heroChips.length
+                ? `<div class="hero-tags">
+                     ${heroChips.map((c) => `<span class="hero-chip">${escapeHtml(c)}</span>`).join("")}
+                   </div>`
+                : ""
+            }
+
+            <div class="hero-cta-row">
+              ${
+                profile.Link
+                  ? `<a href="${escapeHtml(profile.Link)}" class="btn-glow">
+                       <span>${escapeHtml(profile.LinkText || "Contact Me")}</span>
+                       <span>↗</span>
+                     </a>`
+                  : ""
+              }
+              ${
+                firstSecSlug
+                  ? `<a href="#sec-${firstSecSlug}" class="btn-outline">
+                       <span>Explore Portfolio</span>
+                       <span>↓</span>
+                     </a>`
+                  : ""
+              }
+            </div>
+          </div>
+
+          <div class="tilt-card hero-secondary">
+            <div class="metrics-grid">
+              <div class="metric-tile">
+                <div class="metric-num">${expItems.length}</div>
+                <div class="metric-label">Experience</div>
+              </div>
+              <div class="metric-tile">
+                <div class="metric-num">${projItems.length}</div>
+                <div class="metric-label">Projects</div>
+              </div>
+              <div class="metric-tile">
+                <div class="metric-num">${credItems.length}</div>
+                <div class="metric-label">Education & Certs</div>
+              </div>
+              <div class="metric-tile">
+                <div class="metric-num">${skillSet.size || grouped.order.length}</div>
+                <div class="metric-label">Skills & Tools</div>
+              </div>
+            </div>
+
+            ${
+              grouped.Social.length
+                ? `<div>
+                     <div class="social-dock-label">Connect & Profiles</div>
+                     <div class="social-dock">${socialHtml}</div>
+                   </div>`
+                : ""
+            }
+          </div>
+        </div>
+      `;
+
+      // Render All Dynamic Sections
+      const sectionsHtml = grouped.order.map((groupName, idx) => {
+        const slug = groupName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        const items = grouped.sections[groupName] || [];
+        if (!items.length) return "";
+
+        // 1. Unified Education & Certifications Section with Category Filter Tabs!
+        if (groupName === "Education & Certifications") {
+          const hasEdu = items.some((i) => i._subType === "Education");
+          const hasCert = items.some((i) => i._subType === "Certifications");
+          const filteredCreds = items.filter((i) => {
+            if (activeCredFilter === "ALL") return true;
+            return i._subType === activeCredFilter;
+          });
+
+          const filterTabsHtml =
+            hasEdu && hasCert
+              ? `<div class="subfilter-pills" role="tablist">
+                   <button type="button" class="subfilter-btn ${activeCredFilter === "ALL" ? "active" : ""}" data-cred-filter="ALL">All (${items.length})</button>
+                   <button type="button" class="subfilter-btn ${activeCredFilter === "Education" ? "active" : ""}" data-cred-filter="Education">🎓 Education</button>
+                   <button type="button" class="subfilter-btn ${activeCredFilter === "Certifications" ? "active" : ""}" data-cred-filter="Certifications">🏆 Certifications</button>
+                 </div>`
+              : "";
+
+          return `
+            <section class="section-block" id="sec-${slug}" style="animation-delay:${idx * 0.08}s">
+              <div class="section-head">
+                <div class="section-head-left">
+                  <span class="section-icon-orb">${getSectionIcon(groupName)}</span>
+                  <h2 class="section-heading">${escapeHtml(groupName)}</h2>
+                </div>
+                ${filterTabsHtml}
+              </div>
+
+              <div class="cards-3d-grid">
+                ${filteredCreds
+                  .map((item) => {
+                    const isEdu = item._subType === "Education";
+                    return `
+                      <article class="tilt-card card-3d-item">
+                        <div class="card-accent-bar ${isEdu ? "is-edu" : "is-cert"}"></div>
+                        <div>
+                          <div class="card-eyebrow-row">
+                            <span class="category-badge ${isEdu ? "edu-badge" : "cert-badge"}">
+                              ${isEdu ? "🎓 Education" : "🏆 Certification"}
+                            </span>
+                            ${item.Date ? `<span class="item-date">${escapeHtml(item.Date)}</span>` : ""}
+                          </div>
+                          ${renderItemTitle(item)}
+                          ${item.Subtitle ? `<div class="item-subtitle">${escapeHtml(item.Subtitle)}</div>` : ""}
+                          ${item.Description ? `<p class="item-desc">${escapeHtml(item.Description)}</p>` : ""}
+                        </div>
+                        <div class="card-bottom">
+                          ${renderTags(item.Tags)}
+                          ${renderActionLink(item, isEdu ? "Verify Degree" : "View Certificate")}
+                        </div>
+                      </article>
+                    `;
+                  })
+                  .join("")}
+              </div>
+            </section>
+          `;
+        }
+
+        // 2. Experience Timeline
+        if (groupName === "Experience") {
+          return `
+            <section class="section-block" id="sec-${slug}" style="animation-delay:${idx * 0.08}s">
+              <div class="section-head">
+                <div class="section-head-left">
+                  <span class="section-icon-orb">${getSectionIcon(groupName)}</span>
+                  <h2 class="section-heading">${escapeHtml(groupName)}</h2>
+                </div>
+              </div>
+              <div class="timeline-track">
+                ${items
+                  .map(
+                    (item) => `
+                  <article class="tilt-card timeline-item">
+                    <div class="card-top">
+                      ${renderItemTitle(item)}
+                      ${item.Date ? `<span class="item-date">${escapeHtml(item.Date)}</span>` : ""}
+                    </div>
+                    ${item.Subtitle ? `<div class="item-subtitle">${escapeHtml(item.Subtitle)}</div>` : ""}
+                    ${item.Description ? `<p class="item-desc" style="margin-bottom:14px">${escapeHtml(item.Description)}</p>` : ""}
+                    <div class="card-bottom">
+                      ${renderTags(item.Tags)}
+                      ${renderActionLink(item, "Visit Link")}
+                    </div>
+                  </article>
+                `
+                  )
+                  .join("")}
+              </div>
+            </section>
+          `;
+        }
+
+        // 3. Skills 3D Pods
+        if (groupName === "Skills") {
+          return `
+            <section class="section-block" id="sec-${slug}" style="animation-delay:${idx * 0.08}s">
+              <div class="section-head">
+                <div class="section-head-left">
+                  <span class="section-icon-orb">${getSectionIcon(groupName)}</span>
+                  <h2 class="section-heading">${escapeHtml(groupName)}</h2>
+                </div>
+              </div>
+              <div class="skills-3d-grid">
+                ${items
+                  .map((item) => {
+                    const m = (item.Subtitle || "").match(/(\d{1,3})\s*%/);
+                    const pct = m ? Math.min(100, Math.max(10, parseInt(m[1], 10))) : null;
+                    return `
+                      <article class="tilt-card skill-pod">
+                        <div class="skill-pod-top">
+                          <h3 class="skill-pod-name">${escapeHtml(item.Title)}</h3>
+                          ${item.Subtitle ? `<span class="skill-pod-pct">${escapeHtml(item.Subtitle)}</span>` : ""}
+                        </div>
+                        ${
+                          pct !== null
+                            ? `<div class="skill-bar-track"><div class="skill-bar-fill" style="width:${pct}%"></div></div>`
+                            : ""
+                        }
+                        ${item.Description ? `<p class="item-desc" style="margin-bottom:12px">${escapeHtml(item.Description)}</p>` : ""}
+                        ${renderTags(item.Tags)}
+                        ${item.Link ? `<div style="margin-top:12px">${renderActionLink(item, "Learn More")}</div>` : ""}
+                      </article>
+                    `;
+                  })
+                  .join("")}
+              </div>
+            </section>
+          `;
+        }
+
+        // 4. Projects, Achievements & Any Custom Category added in Google Sheet
+        return `
+          <section class="section-block" id="sec-${slug}" style="animation-delay:${idx * 0.08}s">
+            <div class="section-head">
+              <div class="section-head-left">
+                <span class="section-icon-orb">${getSectionIcon(groupName)}</span>
+                <h2 class="section-heading">${escapeHtml(groupName)}</h2>
+              </div>
+            </div>
+            <div class="cards-3d-grid">
+              ${items
+                .map(
+                  (item) => `
+                <article class="tilt-card card-3d-item">
+                  <div class="card-accent-bar"></div>
+                  <div>
+                    <div class="card-top">
+                      ${renderItemTitle(item)}
+                      ${item.Date ? `<span class="item-date">${escapeHtml(item.Date)}</span>` : ""}
+                    </div>
+                    ${item.Subtitle ? `<div class="item-subtitle">${escapeHtml(item.Subtitle)}</div>` : ""}
+                    ${item.Description ? `<p class="item-desc">${escapeHtml(item.Description)}</p>` : ""}
+                  </div>
+                  <div class="card-bottom">
+                    ${renderTags(item.Tags)}
+                    ${renderActionLink(item, "Explore")}
+                  </div>
+                </article>
+              `
+                )
+                .join("")}
+            </div>
+          </section>
+        `;
+      });
+
+      document.getElementById("sectionsContainer").innerHTML = sectionsHtml.join("");
+      attach3DTiltEffect();
+    }
+
+    function renderItemTitle(item) {
+      if (item.Link) {
+        return `
+          <h3 class="item-title">
+            <a href="${escapeHtml(item.Link)}" target="_blank" rel="noopener noreferrer" class="item-title-link">
+              ${escapeHtml(item.Title)} ↗
+            </a>
+          </h3>
+        `;
+      }
+      return `<h3 class="item-title">${escapeHtml(item.Title)}</h3>`;
+    }
+
+    function renderActionLink(item, fallbackText) {
+      if (!item.Link) return "";
+      const label = (item.LinkText && item.LinkText.trim()) || fallbackText || "Open Link";
+      return `
+        <a href="${escapeHtml(item.Link)}" target="_blank" rel="noopener noreferrer" class="action-link-btn">
+          <span>${escapeHtml(label)}</span>
+          <span>↗</span>
+        </a>
+      `;
+    }
+
+    function renderTags(tagsStr) {
+      const tags = splitTags(tagsStr);
+      if (!tags.length) return `<div></div>`;
+      return `
+        <div class="tags-list">
+          ${tags.map((t) => `<span class="skill-tag">${escapeHtml(t)}</span>`).join("")}
+        </div>
+      `;
+    }
+
+    // ========================================================================
+    // 4. 3D PERSPECTIVE TILT & HOLOGRAPHIC SPOTLIGHT ENGINE
+    // ========================================================================
+    function attach3DTiltEffect() {
+      const cards = document.querySelectorAll(".tilt-card");
+      cards.forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          // Subtle 3D tilt angle (max 4.5 deg)
+          const rotateX = ((y - centerY) / centerY) * -4.2;
+          const rotateY = ((x - centerX) / centerX) * 4.2;
+
+          card.style.setProperty("--mouse-x", `${x}px`);
+          card.style.setProperty("--mouse-y", `${y}px`);
+          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(4px)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
+        });
+      });
+    }
+
+    // ========================================================================
+    // 5. INTERACTIVE 3D FLOATING PARTICLES BACKGROUND
+    // ========================================================================
+    function init3DParticles() {
+      const canvas = document.getElementById("bgCanvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const colors = ["#00f2fe", "#8b5cf6", "#ec4899", "#10b981"];
+      const particles = Array.from({ length: 42 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        z: Math.random() * 2 + 0.5,
+        r: Math.random() * 2.2 + 0.8,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      }));
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+        for (const p of particles) {
+          p.x += p.vx * p.z;
+          p.y += p.vy * p.z;
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * p.z * 0.7, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = 0.28;
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    // ========================================================================
+    // 6. INITIALIZATION & EVENTS
+    // ========================================================================
+    async function initPortfolio() {
+      // Theme setup
+      const savedTheme = localStorage.getItem("portfolio_theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+
+      document.getElementById("themeToggleBtn").addEventListener("click", () => {
+        const curr = document.documentElement.getAttribute("data-theme");
+        const next = curr === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        localStorage.setItem("portfolio_theme", next);
+      });
+
+      // Sub-category filter inside Education & Certifications
+      document.addEventListener("click", (e) => {
+        const filterBtn = e.target.closest("[data-cred-filter]");
+        if (filterBtn) {
+          activeCredFilter = filterBtn.getAttribute("data-cred-filter");
+          renderPortfolio();
+        }
+      });
+
+      init3DParticles();
+
+      // Render immediately with default data, then sync live from Google Sheet
+      portfolioRows = DEFAULT_ROWS;
+      renderPortfolio();
+
+      const info = extractSheetInfo(GOOGLE_SHEET_URL);
+      if (info && info.sheetId) {
+        try {
+          const rows2D = await fetchSheetJsonp(info.jsonpUrl);
+          const parsed = parseRows2D(rows2D);
+          if (parsed.length > 0) {
+            portfolioRows = parsed;
+            renderPortfolio();
+          }
+        } catch (err) {
+          console.warn("Live sheet sync fallback:", err.message);
+        }
+      }
+    }
+
+    initPortfolio();
+  </script>
 </body>
 </html>
